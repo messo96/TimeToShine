@@ -96,7 +96,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:orientation="vertical">
 
@@ -134,18 +133,20 @@
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
-            android:text="Powered by:" />
+            android:text="@string/sponsor_tag" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/logo_comune_cesena"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="@dimen/fab_margin"
             android:contentDescription="logo del comune di cesena"
             android:src="@mipmap/ic_comune_cesena" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/logo_la_forlivese"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="@dimen/fab_margin"
             android:contentDescription="logo torrefazione la forlivese"
             android:src="@mipmap/ic_la_forlivese" />

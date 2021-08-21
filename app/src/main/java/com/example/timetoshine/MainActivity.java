@@ -26,6 +26,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_main_home);
 
+        findViewById(R.id.logo_comune_cesena).setOnClickListener(l->{
+            Uri uri = Uri.parse("https://www.instagram.com/comune_di_cesena/");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/comune_di_cesena/")));
+            }
+        });
+
+
+
+        findViewById(R.id.logo_la_forlivese).setOnClickListener(l ->{
+            Uri uri = Uri.parse("https://www.instagram.com/torrefazione_la_forlivese/");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/torrefazione_la_forlivese/")));
+            }
+        });
+
 
         findViewById(R.id.logo_45_giri).setOnClickListener(l ->{
             Uri uri = Uri.parse("https://www.instagram.com/45girifrisbee/");
