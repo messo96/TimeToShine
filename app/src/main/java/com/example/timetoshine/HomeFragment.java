@@ -87,11 +87,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
-
-
         listView = view.findViewById(R.id.daylist_view_calendar);
         List<String> listDay = new LinkedList<>(calendar.keySet());
         //SORT BY NAME OF DAY
@@ -114,6 +109,7 @@ public class HomeFragment extends Fragment {
 
     private void readFromCalendar(HashMap<String,List<Pair<String, String>> > calendar) throws IOException {
         String string = "";
+
         InputStream is = this.getResources().openRawResource(R.raw.calendario);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         String day = "";
