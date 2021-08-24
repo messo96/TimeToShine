@@ -6,6 +6,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -72,12 +73,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.directionButton).setOnClickListener(l ->{
-            Uri gmmIntentUri = Uri.parse("google.navigation:q=Parcheggio+Ippodromo+Cesena,+Cesena+Italy");
+            Uri gmmIntentUri = Uri.parse("google.navigation:q= 44.146038, 12.227971");
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
-            if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(mapIntent);
-            }
+            startActivity(mapIntent);
         });
 
         findViewById(R.id.calendarButton).setOnClickListener(l ->{

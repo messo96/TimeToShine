@@ -1,5 +1,6 @@
 package com.example.timetoshine;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,12 +8,18 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,17 +27,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import uk.co.senab.photoview.PhotoViewAttacher;
+
 public class HomeFragment extends Fragment {
+    private boolean isFull = true;
     private ListView listView;
     private HashMap<String, List<Pair<String, String>> > calendar = new HashMap();
+    private boolean isFullImage = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +50,6 @@ public class HomeFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 
@@ -55,6 +64,34 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ImageView imageView = super.getView().findViewById(R.id.imageView_map_detail);
+        int height = imageView.getLayoutParams().height;
+        PhotoViewAttacher pAttacher = new PhotoViewAttacher(imageView);
+        pAttacher.update();
+        pAttacher.setOnViewTapListener((v, x, y) ->{
+            if(isFull){
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                Snackbar.make(getView(), "Tocca una volta per chiudere la mappa", Snackbar.ANIMATION_MODE_SLIDE).show();
+            }
+            else{
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height));
+            }
+
+            isFull = !isFull;
+        });
+
+        imageView.setOnClickListener(l->{
+
+        });
+
+
+
+
+
+
+
+
         listView = view.findViewById(R.id.daylist_view_calendar);
         List<String> listDay = new LinkedList<>(calendar.keySet());
         //SORT BY NAME OF DAY
