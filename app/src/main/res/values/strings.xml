@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TimeToShine</string>
     <string name="action_settings">Settings</string>
-    <string name="sponsor_tag">Powered by:</string>
+    <string name="sponsor_tag"><u>Powered by:</u></string>
+    <string name="title_tournament">Time To Shine 2021</string>
+    <string name="subtitle_tournament"><b>First Edition</b> 👶</string>
 </resources>

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.TimeToShine" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#DCCDDC39</item>
-        <item name="colorPrimaryVariant">#DCDDCD3A</item>
+        <item name="colorPrimary">#FFC107</item>
+        <item name="colorPrimaryVariant">#BF9F3F</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#D2CF9B4D</item>

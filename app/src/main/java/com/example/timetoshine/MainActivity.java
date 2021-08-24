@@ -27,6 +27,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_main_home);
 
+        findViewById(R.id.logo_ippo_club).setOnClickListener(l->{
+            Uri uri = Uri.parse("https://www.instagram.com/clubippodromo/");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/clubippodromo/")));
+            }
+        });
+
+
         findViewById(R.id.logo_comune_cesena).setOnClickListener(l->{
             Uri uri = Uri.parse("https://www.instagram.com/comune_di_cesena/");
             Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);

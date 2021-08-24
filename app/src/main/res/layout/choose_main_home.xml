@@ -46,8 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/baloo_thambi"
-            android:text="Time To Shine 2021"
+            android:fontFamily="@font/spinnaker"
+            android:text="@string/title_tournament"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -55,8 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/baloo_thambi"
-            android:text="First Edition 👶"
+            android:fontFamily="@font/spinnaker"
+            android:text="@string/subtitle_tournament"
             android:textAlignment="center" />
 
 
@@ -150,6 +150,14 @@
             android:layout_marginHorizontal="@dimen/fab_margin"
             android:contentDescription="logo torrefazione la forlivese"
             android:src="@mipmap/ic_la_forlivese" />
+
+        <ImageView
+        android:id="@+id/logo_ippo_club"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="@dimen/fab_margin"
+        android:contentDescription="logo Club Ippodromo"
+        android:src="@mipmap/ic_ippo_club" />
 
 
     </LinearLayout>
