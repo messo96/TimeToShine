@@ -1,6 +1,7 @@
 package com.example.timetoshine;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.DisplayMetrics;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.LinkedList;
 
 public class TournamentFragment extends Fragment {
@@ -58,12 +60,12 @@ public class TournamentFragment extends Fragment {
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
 
-        String data_html = "<!DOCTYPE html><html> <head> <meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"target-densitydpi=high-dpi\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <link rel=\"stylesheet\" media=\"screen and (-webkit-device-pixel-ratio:1.5)\" href=\"hdpi.css\" /></head> <body style=\"background:white;margin:0 0 0 0; padding:0 0 0 0;\"> <iframe style=\"background:white;\" width=' "+width+"' height='"+height+"' src=\""+DOC_URL+"\" frameborder=\"0\"></iframe> </body> </html> ";
+        String data_html = "<!DOCTYPE html><html> <head> <meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"target-densitydpi=high-dpi\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> <link rel=\"stylesheet\" media=\"screen and (-webkit-device-pixel-ratio:1.5)\" href=\"hdpi.css\" /></head> <body style=\"background:white;margin:0 0 0 0; padding:0 0 0 0;\"> <iframe style=\"background:white;\" width=' " + width + "' height='" + height + "' src=\"" + DOC_URL + "\" frameborder=\"0\"></iframe> </body> </html> ";
 
         webView.loadDataWithBaseURL("https://docs.google.com", data_html, "text/html", "UTF-8", null);
 
 
-        view.findViewById(R.id.btn_reload_schedule).setOnClickListener(l ->{
+        view.findViewById(R.id.btn_reload_schedule).setOnClickListener(l -> {
             webView.reload();
         });
 
@@ -72,22 +74,44 @@ public class TournamentFragment extends Fragment {
             textView_regolamento.setText(readFromFile());
         } catch (IOException e) {
             e.printStackTrace();
-            textView_regolamento.setText("C'è stato un errore nel recuperare il regolamento! Potete picchiare Gala intanto");
+            textView_regolamento.setText("C'è stato un errore nel recuperare il regolamento! Potete insultare Gala intanto");
         }
     }
 
     private String readFromFile() throws IOException {
+        String source_url = "https://pastebin.com/raw/3EyssJ76";
         String regolamento = "";
-        String string = "";
-        InputStream is = this.getResources().openRawResource(R.raw.regolamento);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        String day = "";
-        while ((string = reader.readLine()) != null) {
-            regolamento += (string + "\n");
+
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        BufferedReader in = null;
+        try {
+            String string = "";
+
+            URL url = new URL(source_url);
+            in = new BufferedReader(new InputStreamReader(url.openStream()));
+            String day = "";
+            while ((string = in.readLine()) != null) {
+                regolamento += (string + "\n");
+            }
+            in.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        is.close();
 
         return regolamento;
-    }
 
+        /*
+
+        InputStream is = this.getResources().openRawResource(R.raw.regolamento);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+
+         */
+
+    }
 }

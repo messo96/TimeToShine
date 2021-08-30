@@ -22,12 +22,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Made with 👐 by " />
+                android:text="👐made by " />
 
             <ImageView
                 android:id="@+id/logo_45_giri"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="5dp"
                 android:src="@mipmap/ic_logo_45giri" />
