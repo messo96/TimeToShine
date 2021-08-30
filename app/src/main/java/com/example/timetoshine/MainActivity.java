@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bnvMain;
     private Fragment selectedFragment = null;
     private String tagFragment;
+    private boolean flagBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_main_home);
+        flagBack = getIntent().getBooleanExtra("flagBack", false);
 
         findViewById(R.id.logo_ippo_club).setOnClickListener(l->{
             Uri uri = Uri.parse("https://www.instagram.com/clubippodromo/");
@@ -129,7 +131,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent  = new Intent(this, MainActivity.class);
+        Intent intent;
+        if(!flagBack) {
+            intent = new Intent(this, MainActivity.class);
+            intent.putExtra("flagBack", true);
+        }
+        else{
+            intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            flagBack = false;
+        }
         startActivity(intent);
     }
 }
